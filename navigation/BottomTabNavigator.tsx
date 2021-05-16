@@ -10,9 +10,9 @@ import * as React from 'react';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
-import TabOneScreen from '../screens/TabOneScreen';
-import TabTwoScreen from '../screens/TabTwoScreen';
-import { BottomTabParamList, TabOneParamList, TabTwoParamList } from '../types';
+import ExamScreen from '../screens/ExamScreen';
+import TestScreen from '../screens/TestScreen';
+import { BottomTabParamList, ExamParamList, TestParamList } from '../types';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -21,18 +21,18 @@ export default function BottomTabNavigator() {
 
   return (
     <BottomTab.Navigator
-      initialRouteName="TabOne"
+      initialRouteName="Exam"
       tabBarOptions={{ activeTintColor: Colors[colorScheme].tint }}>
       <BottomTab.Screen
-        name="TabOne"
-        component={TabOneNavigator}
+        name="Exam"
+        component={ExamNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
       />
       <BottomTab.Screen
-        name="TabTwo"
-        component={TabTwoNavigator}
+        name="Test"
+        component={TestNavigator}
         options={{
           tabBarIcon: ({ color }) => <TabBarIcon name="ios-code" color={color} />,
         }}
@@ -49,30 +49,30 @@ function TabBarIcon(props: { name: React.ComponentProps<typeof Ionicons>['name']
 
 // Each tab has its own navigation stack, you can read more about this pattern here:
 // https://reactnavigation.org/docs/tab-based-navigation#a-stack-navigator-for-each-tab
-const TabOneStack = createStackNavigator<TabOneParamList>();
+const ExamStack = createStackNavigator<ExamParamList>();
 
-function TabOneNavigator() {
+function ExamNavigator() {
   return (
-    <TabOneStack.Navigator>
-      <TabOneStack.Screen
-        name="TabOneScreen"
-        component={TabOneScreen}
-        options={{ headerTitle: 'Tab One Title' }}
+    <ExamStack.Navigator>
+      <ExamStack.Screen
+        name="ExamScreen"
+        component={ExamScreen}
+        options={{ headerTitle: 'Exam Final Grade Caculator' }}
       />
-    </TabOneStack.Navigator>
+    </ExamStack.Navigator>
   );
 }
 
-const TabTwoStack = createStackNavigator<TabTwoParamList>();
+const TestStack = createStackNavigator<TestParamList>();
 
-function TabTwoNavigator() {
+function TestNavigator() {
   return (
-    <TabTwoStack.Navigator>
-      <TabTwoStack.Screen
-        name="TabTwoScreen"
-        component={TabTwoScreen}
-        options={{ headerTitle: 'Tab Two Title' }}
+    <TestStack.Navigator>
+      <TestStack.Screen
+        name="TestScreen"
+        component={TestScreen}
+        options={{ headerTitle: 'Test Grade Caculator' }}
       />
-    </TabTwoStack.Navigator>
+    </TestStack.Navigator>
   );
 }
